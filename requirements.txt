@@ -1,0 +1,6 @@
+pandas
+numpy
+seaborn
+-e .
+
+# write -e . to automatically trigger setup.py file .
