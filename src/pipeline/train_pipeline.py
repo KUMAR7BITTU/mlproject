@@ -1,0 +1,1 @@
+# Basically we have two types of pipeline :- training pipeline and prediction pipeline . Here we will write all the codes related to training pipeline . from this training pipeline we will trigger all the componenets like data_ingestion, data_transformation, model_trainer .

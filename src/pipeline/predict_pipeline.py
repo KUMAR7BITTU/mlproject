@@ -1,0 +1,1 @@
+# To predict for new data we will basically use predict pipeline .
