@@ -5,7 +5,7 @@
 import sys
 # Any expection that will be controlled , the sys library will have that information . sys library -:  The python sys module contains methods and variables for modifying many elements of the Python Runtime Environment.
 
-import logging 
+from src.logger import logging 
 def error_message_detail(error,error_detail:sys):
     _,_,exc_tb=error_detail.exc_info()
     file_name = exc_tb.tb_frame.f_code.co_filename
