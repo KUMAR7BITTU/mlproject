@@ -5,8 +5,9 @@ import sys
 import numpy as np
 import pandas as pd
 import dill
-from sklearn.metrics import r2_score
 # dill is also another library which will also help us to create pickle file .
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import r2_score
 from src.exception import CustomException
 def save_object(file_path,obj):
     try:
@@ -21,12 +22,22 @@ def save_object(file_path,obj):
 
 # Here we will write code related to evaluation method .
 
-def evaluate_models(X_train,y_train,X_test,y_test,models):
+def evaluate_models(X_train,y_train,X_test,y_test,models,param):
     try:
         report={}
         
         for i in range(len(list(models))):
             model= list(models.values())[i]
+            
+            para=param[list(models.keys())[i]]
+            # Take this parameter (para) and apply GridSearchCV 
+            # gs=GridSearchCV(model,para,cv=cv,n_jobs=n_jobs,verbose=verbose,refit=refit)
+            gs=GridSearchCV(model,para,cv=3)
+            # cv = cross validation
+            gs.fit(X_train,y_train)
+            
+            
+            model.set_params(**gs.best_params_)
             model.fit(X_train,y_train) # Train Model
             y_train_pred = model.predict(X_train)
             y_test_pred = model.predict(X_test)
